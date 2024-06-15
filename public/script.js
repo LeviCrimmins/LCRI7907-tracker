@@ -1,68 +1,66 @@
-// Initialize DOM elements
-const walkForm = document.getElementById("walk-form");
-const walkList = document.getElementById("list");
-const walkNameInput = document.getElementById("walk-name");
-const walkDistanceInput = document.getElementById("walk-distance");
-const walkDateInput = document.getElementById("walk-date");
+// Setting up variables for our HTML elements using DOM selection
+const form = document.getElementById("taskform");
+const button = document.querySelector("#taskform > button"); // Complex CSS query
+const tasklist = document.getElementById("tasklist");
+const taskInput = document.getElementById("taskInput");
 
-// Load existing walks on page load
-loadWalks();
+// Event listener for Button click
+// This could also be form.addEventListener("submit", function() {...} )
+button.addEventListener("click", function(event) {
+  event.preventDefault(); // Not as necessary for button, but needed for form submit
 
-// Event listener for form submission
-walkForm.addEventListener("submit", function(event) {
-  event.preventDefault();
-  addWalk();
-});
+  let task = form.elements.task.value; // could be swapped out for line below
+  //let task = taskInput.value;
 
-// Function to add a new walk
-function addWalk() {
-  const name = walkNameInput.value;
-  const distance = walkDistanceInput.value;
-  const date = walkDateInput.value;
+  let date = (new Date()).toLocaleDateString('en-US') //Convert to short date format
 
-  if (!name || !distance || !date) {
-    alert("Please fill in all fields");
-    return;
-  }
+  // Call the addTask() function using
+  addTask(task, date, "26/03/2021", "Low", ["1", "30"], false);
 
-  const walk = { name, distance: parseFloat(distance), date };
-  saveWalk(walk);
-  renderWalk(walk);
-  walkForm.reset();
+  // Log out the newly populated taskList everytime the button has been pressed
+  console.log(taskList);
+})
+
+// Create an empty array to store our tasks
+var taskList = [];
+
+function addTask(taskDescription, createdDate, dueDate, priorityRating, estimatedTime, completionStatus) {
+  let task = {
+    taskDescription,
+    createdDate,
+    dueDate,
+    priorityRating,
+    estimatedTime,
+    completionStatus
+  };
+
+  // Add the task to our array of tasks
+  taskList.push(task);
+
+  // Separate the DOM manipulation from the object creation logic
+  renderTask(task);
 }
 
-// Function to save a walk to localStorage
-function saveWalk(walk) {
-  const walks = JSON.parse(localStorage.getItem("walks")) || [];
-  walks.push(walk);
-  localStorage.setItem("walks", JSON.stringify(walks));
-}
 
-// Function to load walks from localStorage
-function loadWalks() {
-  const walks = JSON.parse(localStorage.getItem("walks")) || [];
-  walks.forEach(renderWalk);
-}
+// Function to display the item on the page
+function renderTask(task) {
+  let item = document.createElement("li");
+  item.innerHTML = "<p>" + task.taskDescription + "</p>";
 
-// Function to render a walk on the page
-function renderWalk(walk) {
-  const item = document.createElement("li");
-  item.innerHTML = `<p>${walk.name} - ${walk.distance} km - ${walk.date}</p>`;
+  tasklist.appendChild(item);
+
+  // Setup delete button DOM elements
+  let delButton = document.createElement("button");
+  let delButtonText = document.createTextNode("Delete");
+  delButton.appendChild(delButtonText);
+  item.appendChild(delButton); // Adds a delete button to every task
+
+  // Listen for when the 
+  delButton.addEventListener("click", function(event){
+    item.remove(); // Remove the task item from the page when button clicked
+    // Because we used 'let' to define the item, this will always delete the right element. this is straight up wrong. silly stuff.
+  })
   
-  const delButton = document.createElement("button");
-  delButton.textContent = "Delete";
-  delButton.addEventListener("click", function() {
-    deleteWalk(walk);
-    item.remove();
-  });
-
-  item.appendChild(delButton);
-  walkList.appendChild(item);
-}
-
-// Function to delete a walk from localStorage
-function deleteWalk(walkToDelete) {
-  let walks = JSON.parse(localStorage.getItem("walks")) || [];
-  walks = walks.filter(walk => walk.name !== walkToDelete.name);
-  localStorage.setItem("walks", JSON.stringify(walks));
+  // Clear the value of the input once the task has been added to the page
+  form.reset();
 }
