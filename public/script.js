@@ -9,12 +9,12 @@ form.addEventListener("submit", function(event) {
   // Access form inputs using form.elements
   let title = form.elements.title.value;
   let date = form.elements.Date.value;
-  let completionTime = form.elements.completionTime.value;
+  let timeTaken = form.elements.timeTaken.value;
   let distance = form.elements.distance.value;
   let heartrate = form.elements.Heartrate.value;
 
   // Call addTask function with form input values
-  addTask(title, date, completionTime, distance, heartrate);
+  addTask(title, date, timeTaken, distance, heartrate);
 
   // Save tasks to local storage
   saveTasks();
@@ -27,11 +27,11 @@ form.addEventListener("submit", function(event) {
 let taskList = JSON.parse(localStorage.getItem('taskList')) || [];
 
 // Function to add task to taskList array
-function addTask(title, date, completionTime, distance, heartrate) {
+function addTask(title, date, timeTaken, distance, heartrate) {
   let task = {
     title,
     date,
-    completionTime,
+    timeTaken,
     distance,
     heartrate
   };
@@ -48,7 +48,7 @@ function renderTask(task) {
   item.innerHTML = `
     <p>Title: ${task.title}</p>
     <p>Date: ${task.date}</p>
-    <p>Completion Time: ${task.completionTime}</p>
+    <p>Time Taken: ${task.timeTaken}</p>
     <p>Distance: ${task.distance} Km</p>
     <p>Heartrate: ${task.heartrate}</p>
   `;
