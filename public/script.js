@@ -16,15 +16,15 @@ form.addEventListener("submit", function(event) {
   // Call addTask function with form input values
   addTask(title, date, completionTime, distance, heartrate);
 
-  // Optional: Log the task list for debugging purposes
-  console.log(taskList);
+  // Save tasks to local storage
+  saveTasks();
 
   // Clear the form inputs after submission
   form.reset();
 });
 
-// Array to store tasks
-let taskList = [];
+// Array to store tasks, initially load from local storage if available
+let taskList = JSON.parse(localStorage.getItem('taskList')) || [];
 
 // Function to add task to taskList array
 function addTask(title, date, completionTime, distance, heartrate) {
@@ -58,9 +58,25 @@ function renderTask(task) {
   delButton.textContent = "Delete";
   delButton.addEventListener("click", function() {
     item.remove(); // Remove task item from the list
-    // Optionally, you can also remove the task from taskList array here
+    // Remove task from taskList array
+    taskList = taskList.filter(t => t !== task);
+    // Save updated task list to local storage
+    saveTasks();
   });
   item.appendChild(delButton);
 
   tasklist.appendChild(item); // Append task item to tasklist ul element
 }
+
+// Function to save tasks to local storage
+function saveTasks() {
+  localStorage.setItem('taskList', JSON.stringify(taskList));
+}
+
+// Load tasks from local storage on page load
+function loadTasks() {
+  taskList.forEach(task => renderTask(task));
+}
+
+// Call loadTasks() on page load to render existing tasks
+loadTasks();
