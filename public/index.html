@@ -1,48 +1,28 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="./scss/main.scss" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <form id="taskform">
-      <label for="task">Task:</label>
-      <input type="text" name="task" id="taskInput">
-      
-      <br>
-    <!-- Date input -->
-      <label for="dueDate">Due Date: </label>
-      <input type="date" name="dueDate" id="dueDateInput">
-      <br>
-    <!-- Time input -->
-    <label for="completionTime">Completion Time: </label>
-      <input type="time" name="completionTime" id="completionTimeInput">
-      
-      <br>
-      
-    <label for="estimatedTime">Estimated completion time (in mins):</label>
-    <input type="number" name="estimatedTime" id="estimatedTimeInput">
-    <!-- Priority -->
-    <br>
-    
-    <label for="priority">Task Priority:</label>
-    <select name="prority" id="priorityInput">
-      <option value="">Select one</option>
-      <option value="Low">Low</option>
-      <option value="Medium">Medium</option>
-      <option value="High">High</option>
-    </select>
-    
-    <br>
-      
-      <button type="submit">Submit</button>
-    </form>
-    <ul id="tasklist">
-    </ul>
-    <!-- <script src="script.js"></script> -->
-    <!-- Swap the scripts to see the working solution -->
-    <script src="script.js"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WalkTrackr</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <h1>WalkTrackr</h1>
+    <div id="add-walk">
+      <h2>Add a New Walk</h2>
+      <form id="walk-form">
+        <input type="text" id="walk-name" placeholder="Walk Name" required>
+        <input type="number" id="walk-distance" placeholder="Distance (km)" required>
+        <input type="text" id="walk-date" placeholder="Date" required>
+        <button type="submit">Add Walk</button>
+      </form>
+    </div>
+    <div id="walk-list">
+      <h2>Your Walks</h2>
+      <ul id="list"></ul>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
 </html>
