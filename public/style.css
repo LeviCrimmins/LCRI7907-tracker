@@ -76,32 +76,19 @@ button:focus {
     gap: 10px; /* Increased gap between charts */
 }
   
-.chart-container {
-    flex: 0 0 auto;
-    width: 30%; /* Three charts per row */
-    padding: 10px;
-    background-color: #1f1f1f; /* Dark gray background */
-    color: #ffffff; /* White text */
-    border: 1px solid #444; /* Dark border */
-    padding: 8px;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-  
-/* Individual card for each workout history item */
+.chart-container,
 .workout-card {
-    flex: 0 0 calc(50% - 20px); /* Two cards per row with gap */
+    flex: 0 0 calc(30% - 20px); /* Three items per row with gap */
     padding: 10px;
     background-color: #1f1f1f; /* Dark gray background */
     color: #ffffff; /* White text */
     border: 1px solid #444; /* Dark border */
     padding: 8px;
     border-radius: 5px;
-    margin-bottom: 20px;
     box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
-/* Title and details within each workout card */
 .workout-card h3 {
     font-size: 16px;
     margin-bottom: 5px;
@@ -114,11 +101,8 @@ button:focus {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .chart-container {
-        width: 100%; /* Full width on smaller screens */
-    }
-  
+    .chart-container,
     .workout-card {
-        flex: 0 0 100%; /* Full width on smaller screens */
+        flex: 0 0 calc(50% - 20px); /* Two items per row with gap on smaller screens */
     }
 }

@@ -52,9 +52,10 @@ function addTask(title, date, timeTaken, distance, heartrate) {
 
 // Function to render task on the page
 function renderTask(task) {
-  let item = document.createElement("li");
-  item.innerHTML = `
-    <p>Title: ${task.title}</p>
+  let workoutCard = document.createElement("div");
+  workoutCard.classList.add("workout-card");
+  workoutCard.innerHTML = `
+    <h3>${task.title}</h3>
     <p>Date: ${task.date}</p>
     <p>Time Taken: ${task.timeTaken} minutes</p>
     <p>Distance: ${task.distance} Km</p>
@@ -65,7 +66,7 @@ function renderTask(task) {
   let delButton = document.createElement("button");
   delButton.textContent = "Delete";
   delButton.addEventListener("click", function() {
-    item.remove(); // Remove task item from the list
+    workoutCard.remove(); // Remove workout card from the list
     // Remove task from taskList array
     taskList = taskList.filter(t => t !== task);
     // Save updated task list to local storage
@@ -73,10 +74,12 @@ function renderTask(task) {
     // Update charts after deleting a task
     updateCharts();
   });
-  item.appendChild(delButton);
+  workoutCard.appendChild(delButton);
 
-  tasklist.appendChild(item); // Append task item to tasklist ul element
+  // Append workout card to workout history div
+  document.getElementById("workoutHistory").appendChild(workoutCard);
 }
+
 
 // Function to save tasks to local storage
 function saveTasks() {
