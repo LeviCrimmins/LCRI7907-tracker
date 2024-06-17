@@ -6,7 +6,7 @@ WalkTrackr is designed to help users maintain or gain a healthy lifestyle and al
 This Single-Page Application allows you to track your walks and uses HTML, CSS and JavaScript as well as local storage to track your journey.
 
 ### Version Control
-This project uses git and github for tracking changes and managing development. Please see my github repository here: https://github.com/LeviCrimmins/abcd1234-tracker.git 
+This project uses git and github for tracking changes and managing development. Please see my github repository here: https://github.com/LeviCrimmins/LCRI7907-tracker.git
 
 ## Features
 - **Workout Tracker:** Record your workout stats for later
@@ -28,9 +28,9 @@ This application uses `localStorage` meaning it is only recording data on the sp
 ## Acknowledgements
 
 ### Sources
-- MDN Web Docs
-- Chatgpt
-- W3Schools
+- Mozilla. (2019, May 29). MDN Web Docs. MDN Web Docs. https://developer.mozilla.org/en-US/ 
+- OpenAI. (2022, November 30). ChatGPT . ChatGPT. https://chatgpt.com/
+- W3Schools. (1998). W3Schools Online Web Tutorials. W3schools.com; W3Schools. https://www.w3schools.com/
 
 ### AI Usage
 This project used AI to help generate comments on the code in order to save me time
