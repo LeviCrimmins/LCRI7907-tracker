@@ -1,14 +1,18 @@
 /* Body styles for dark mode */
 body {
     background-color: #121212; /* Dark background color */
-    color: #ffffff; /* Light text color */
+    color: #d3d3d3; /* Light text color */
     font-family: Arial, sans-serif;
     padding: 20px;
   }
   
   /* Header styles */
-  h1, h2 {
-    color: #ffffff; /* White header text */
+  h1 {
+    color: #37ff7a; /* White header text */
+  }
+
+  h2 {
+    color: #ebebeb; /* White header text */
   }
   
   /* Form container */
@@ -75,6 +79,14 @@ body {
     flex: 0 0 auto;
     width: 33.33%; /* Three charts per row */
     padding: 10px;
+    background-color: #1f1f1f; /* Dark gray background */
+    color: #ffffff; /* White text */
+    border: 1px solid #444; /* Dark border */
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box
   }
   
   /* Individual card for each workout history item */
