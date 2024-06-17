@@ -52,10 +52,15 @@ function addTask(title, date, timeTaken, distance, heartrate) {
 
 // Function to render task on the page
 function renderTask(task) {
+  // Function to capitalize only the first letter
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
+
   let workoutCard = document.createElement("div");
   workoutCard.classList.add("workout-card");
   workoutCard.innerHTML = `
-    <h3>${task.title}</h3>
+    <h3>${capitalizeFirstLetter(task.title)}</h3> <!-- Capitalize first letter -->
     <p>Date: ${task.date}</p>
     <p>Time Taken: ${task.timeTaken} minutes</p>
     <p>Distance: ${task.distance} Km</p>
