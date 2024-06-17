@@ -5,10 +5,11 @@ body {
     font-family: Arial, sans-serif;
     padding: 20px;
 }
-  
+
 /* Header styles */
 h1 {
     color: #37ff7a; /* Bright green header text */
+    font-family: 'Inter', sans-serif;
 }
 
 h2 {
