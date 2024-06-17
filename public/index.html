@@ -1,77 +1,85 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>WalkTrackr</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WalkTrackr</title>
+  <link href="style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
     <h1>WalkTrackr</h1>
-    <h2>New Workout</h2>
-    <form id="taskform">
-      <!-- Task Input -->
-      <label for="title">Title:</label>
-      <input type="text" name="title" id="titleInput" placeholder="e.g. Morning Walk">
-      
-      <br>
-    
-      <!-- Date input -->
-      <label for="Date">Date:</label>
-      <input type="date" name="Date" id="DateInput">
-      
-      <br>
-    
-      <!-- Time Taken input -->
-      <label for="timeTaken">Time Taken:</label>
-      <input type="number" name="timeTaken" id="timeTakenInput" placeholder="Mins">
-      
-      <br>
-    
-      <!-- Distance input -->
-      <label for="Distance">Distance:</label>
-      <input type="number" name="distance" id="distanceInput" min="0.1" max="1000" step="0.01" placeholder="Km">
-      
-      <br>
-    
-      <!-- Heartrate input -->
-      <label for="Heartrate">Heartrate:</label>
-      <input type="number" name="Heartrate" id="HeartrateInput" min="1" max="250" step="1"  placeholder="BPM">
-      
-      <br>
-      <button type="submit">Submit</button>
+    <nav>
+      <!-- <h2>New Workout</h2> -->
+    </nav>
+  </header>
 
+  <main>
+    <form id="taskform">
+      <fieldset>
+        <legend>New Workout</legend>
+
+        <div>
+          <label for="title">Title:</label>
+          <input type="text" name="title" id="titleInput" placeholder="e.g. Morning Walk" required>
+        </div>
+
+        <div>
+          <label for="Date">Date:</label>
+          <input type="date" name="Date" id="DateInput" required>
+        </div>
+
+        <div>
+          <label for="timeTaken">Time Taken:</label>
+          <input type="number" name="timeTaken" id="timeTakenInput" placeholder="Mins" required>
+        </div>
+
+        <div>
+          <label for="distance">Distance:</label>
+          <input type="number" name="distance" id="distanceInput" min="0.1" max="1000" step="0.01" placeholder="Km" required>
+        </div>
+
+        <div>
+          <label for="Heartrate">Heartrate:</label>
+          <input type="number" name="Heartrate" id="HeartrateInput" min="1" max="250" step="1" placeholder="BPM" required>
+        </div>
+
+        <button type="submit">Submit</button>
+      </fieldset>
+    </form>
+
+    <section id="stats">
       <h2>Stats</h2>
       <div id="chartContainer" class="card">
-        <div class="chart-container">
+        <article class="chart-container">
           <h3 class="chart-title">Distance Chart</h3>
           <canvas id="distanceChart"></canvas>
-        </div>
-        <div class="chart-container">
+        </article>
+        <article class="chart-container">
           <h3 class="chart-title">Heartrate Chart</h3>
           <canvas id="heartrateChart"></canvas>
-        </div>
-        <div class="chart-container">
+        </article>
+        <article class="chart-container">
           <h3 class="chart-title">Time Taken Chart</h3>
           <canvas id="timeTakenChart"></canvas>
-        </div>
+        </article>
       </div>
+    </section>
 
+    <section id="workoutHistory">
       <h2>Workout History</h2>
-      
-    </form>
-    
-    <div id="workoutHistory">
       <!-- Individual card for each workout history item -->
       <!-- This will be populated dynamically -->
-    </div>
-    
+    </section>
+  </main>
 
+  <footer>
     <script src="script.js"></script>
-  </body>
+  </footer>
+</body>
 </html>
