@@ -85,20 +85,23 @@ body {
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 5px;
-    width: 100%;
+    width: 50%;
     box-sizing: border-box
   }
   
   /* Individual card for each workout history item */
   .workout-card {
+    flex: 0 0 auto;
+    width: 33.33%; /* Three charts per row */
+    padding: 10px;
     background-color: #1f1f1f; /* Dark gray background */
     color: #ffffff; /* White text */
-    border-radius: 8px;
-    padding: 10px;
-    margin-right: 10px;
+    border: 1px solid #444; /* Dark border */
+    padding: 8px;
     margin-bottom: 10px;
-    flex: 0 0 auto;
-    width: calc(33.33% - 10px); /* Adjust width based on desired layout */
+    border-radius: 5px;
+    width: 50%;
+    box-sizing: border-box
   }
   
   /* Title and details within each workout card */
