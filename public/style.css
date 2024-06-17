@@ -1,0 +1,113 @@
+/* Body styles for dark mode */
+body {
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* Light text color */
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  /* Header styles */
+  h1, h2 {
+    color: #ffffff; /* White header text */
+  }
+  
+  /* Form container */
+  #taskform {
+    margin-bottom: 20px;
+  }
+  
+  /* Label styles */
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Input styles */
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"] {
+    background-color: #1f1f1f; /* Dark gray background */
+    color: #ffffff; /* White text */
+    border: 1px solid #444; /* Dark border */
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  input[type="date"]:focus,
+  input[type="time"]:focus {
+    outline: none;
+    border-color: #4caf50; /* Bright green focus color */
+  }
+  
+  /* Button styles */
+  button {
+    background-color: #4caf50; /* Bright green button background */
+    color: #ffffff; /* White button text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Darker shade of green on hover */
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Stats section */
+  #chartContainer {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .chart-container {
+    flex: 0 0 auto;
+    width: 33.33%; /* Three charts per row */
+    padding: 10px;
+  }
+  
+  /* Individual card for each workout history item */
+  .workout-card {
+    background-color: #1f1f1f; /* Dark gray background */
+    color: #ffffff; /* White text */
+    border-radius: 8px;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    flex: 0 0 auto;
+    width: calc(33.33% - 10px); /* Adjust width based on desired layout */
+  }
+  
+  /* Title and details within each workout card */
+  .workout-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .workout-card p {
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .chart-container {
+      width: 100%; /* Full width on smaller screens */
+    }
+  
+    .workout-card {
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+  
