@@ -178,7 +178,7 @@ function updateCharts() {
     });
   }
 
-  // Update Time Taken Chart
+  // Update Time Taken Chart to Bar Chart
   if (timeTakenChartInstance) {
     timeTakenChartInstance.data.labels = dates;
     timeTakenChartInstance.data.datasets[0].data = timesTaken;
@@ -186,14 +186,14 @@ function updateCharts() {
   } else {
     const timeTakenCtx = document.getElementById('timeTakenChart').getContext('2d');
     timeTakenChartInstance = new Chart(timeTakenCtx, {
-      type: 'line',
+      type: 'bar', // Change type to 'bar' for bar chart
       data: {
         labels: dates,
         datasets: [{
           label: 'Time Taken (Minutes)',
           data: timesTaken,
-          borderColor: 'rgba(54, 162, 235, 1)',
           backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
           borderWidth: 1
         }]
       },
@@ -201,11 +201,7 @@ function updateCharts() {
         responsive: true,
         scales: {
           x: {
-            type: 'time',
-            time: {
-              unit: 'day',
-              tooltipFormat: 'P'
-            },
+            type: 'category', // Use 'category' for bar charts
             title: {
               display: true,
               text: 'Date'
