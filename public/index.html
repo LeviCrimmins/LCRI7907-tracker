@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width">
     <title>WalkTrackr</title>
     <link href="./scss/main.scss" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
   </head>
   <body>
     <h1>WalkTrackr</h1>
@@ -46,6 +48,18 @@
     
     <ul id="tasklist">
     </ul>
+
+    <h2>Charts</h2>
+    <div>
+      <canvas id="distanceChart"></canvas>
+    </div>
+    <div>
+      <canvas id="heartrateChart"></canvas>
+    </div>
+    <div>
+      <canvas id="timeTakenChart"></canvas>
+    </div>
+
     
     <!-- <script src="script.js"></script> -->
     <!-- Swap the scripts to see the working solution -->
