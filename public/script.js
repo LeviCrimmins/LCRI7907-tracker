@@ -26,6 +26,11 @@ form.addEventListener("submit", function(event) {
 // Array to store tasks, initially load from local storage if available
 let taskList = JSON.parse(localStorage.getItem('taskList')) || [];
 
+// Store chart instances
+let distanceChartInstance;
+let heartrateChartInstance;
+let timeTakenChartInstance;
+
 // Function to add task to taskList array
 function addTask(title, date, timeTaken, distance, heartrate) {
   let task = {
@@ -40,7 +45,9 @@ function addTask(title, date, timeTaken, distance, heartrate) {
 
   // Render the task on the page
   renderTask(task);
-  renderCharts(); // Update charts after adding a new task
+
+  // Update charts with new data
+  updateCharts();
 }
 
 // Function to render task on the page
@@ -63,7 +70,8 @@ function renderTask(task) {
     taskList = taskList.filter(t => t !== task);
     // Save updated task list to local storage
     saveTasks();
-    renderCharts(); // Update charts after deleting a task
+    // Update charts after deleting a task
+    updateCharts();
   });
   item.appendChild(delButton);
 
@@ -75,127 +83,151 @@ function saveTasks() {
   localStorage.setItem('taskList', JSON.stringify(taskList));
 }
 
-// Function to render charts
-function renderCharts() {
+// Function to update existing charts or create new ones if they don't exist
+function updateCharts() {
   const dates = taskList.map(task => task.date);
   const distances = taskList.map(task => task.distance);
   const heartrates = taskList.map(task => task.heartrate);
   const timesTaken = taskList.map(task => task.timeTaken);
 
-  // Distance Chart
-  const distanceCtx = document.getElementById('distanceChart').getContext('2d');
-  new Chart(distanceCtx, {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [{
-        label: 'Distance (Km)',
-        data: distances,
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          type: 'time',
-          time: {
-            unit: 'day',
-            tooltipFormat: 'P'
+  // Update Distance Chart
+  if (distanceChartInstance) {
+    distanceChartInstance.data.labels = dates;
+    distanceChartInstance.data.datasets[0].data = distances;
+    distanceChartInstance.update();
+  } else {
+    const distanceCtx = document.getElementById('distanceChart').getContext('2d');
+    distanceChartInstance = new Chart(distanceCtx, {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [{
+          label: 'Distance (Km)',
+          data: distances,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+              tooltipFormat: 'P'
+            },
+            title: {
+              display: true,
+              text: 'Date'
+            }
           },
-          title: {
-            display: true,
-            text: 'Date'
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Distance (Km)'
+          y: {
+            title: {
+              display: true,
+              text: 'Distance (Km)'
+            }
           }
         }
       }
-    }
-  });
+    });
+  }
 
-  // Heartrate Chart
-  const heartrateCtx = document.getElementById('heartrateChart').getContext('2d');
-  new Chart(heartrateCtx, {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [{
-        label: 'Heartrate (BPM)',
-        data: heartrates,
-        borderColor: 'rgba(255, 99, 132, 1)',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          type: 'time',
-          time: {
-            unit: 'day',
-            tooltipFormat: 'P'
+  // Update Heartrate Chart
+  if (heartrateChartInstance) {
+    heartrateChartInstance.data.labels = dates;
+    heartrateChartInstance.data.datasets[0].data = heartrates;
+    heartrateChartInstance.update();
+  } else {
+    const heartrateCtx = document.getElementById('heartrateChart').getContext('2d');
+    heartrateChartInstance = new Chart(heartrateCtx, {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [{
+          label: 'Heartrate (BPM)',
+          data: heartrates,
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+              tooltipFormat: 'P'
+            },
+            title: {
+              display: true,
+              text: 'Date'
+            }
           },
-          title: {
-            display: true,
-            text: 'Date'
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Heartrate (BPM)'
+          y: {
+            title: {
+              display: true,
+              text: 'Heartrate (BPM)'
+            }
           }
         }
       }
-    }
-  });
+    });
+  }
 
-  // Time Taken Chart
-  const timeTakenCtx = document.getElementById('timeTakenChart').getContext('2d');
-  new Chart(timeTakenCtx, {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [{
-        label: 'Time Taken (Minutes)',
-        data: timesTaken,
-        borderColor: 'rgba(54, 162, 235, 1)',
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          type: 'time',
-          time: {
-            unit: 'day',
-            tooltipFormat: 'P'
+  // Update Time Taken Chart
+  if (timeTakenChartInstance) {
+    timeTakenChartInstance.data.labels = dates;
+    timeTakenChartInstance.data.datasets[0].data = timesTaken;
+    timeTakenChartInstance.update();
+  } else {
+    const timeTakenCtx = document.getElementById('timeTakenChart').getContext('2d');
+    timeTakenChartInstance = new Chart(timeTakenCtx, {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [{
+          label: 'Time Taken (Minutes)',
+          data: timesTaken,
+          borderColor: 'rgba(54, 162, 235, 1)',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+              tooltipFormat: 'P'
+            },
+            title: {
+              display: true,
+              text: 'Date'
+            }
           },
-          title: {
-            display: true,
-            text: 'Date'
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: 'Time Taken (Minutes)'
+          y: {
+            title: {
+              display: true,
+              text: 'Time Taken (Minutes)'
+            }
           }
         }
       }
-    }
-  });
+    });
+  }
 }
 
-// Call loadTasks() on page load to render existing tasks and charts
+// Load tasks from local storage on page load
+function loadTasks() {
+  taskList.forEach(task => renderTask(task));
+  updateCharts(); // Update charts after loading tasks
+}
+
+// Call loadTasks() on page load to render existing tasks
 loadTasks();
