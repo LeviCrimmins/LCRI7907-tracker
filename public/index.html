@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>WalkTrackr</title>
-    <link href="./scss/main.scss" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
   </head>
@@ -44,28 +44,28 @@
       <button type="submit">Submit</button>
 
       <h2>Stats</h2>
-    <div>
-      <canvas id="distanceChart"></canvas>
-    </div>
-    <div>
-      <canvas id="heartrateChart"></canvas>
-    </div>
-    <div>
-      <canvas id="timeTakenChart"></canvas>
-    </div>
+      <div id="chartContainer" class="card">
+        <div class="chart-container">
+          <h3 class="chart-title">Distance Chart</h3>
+          <canvas id="distanceChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3 class="chart-title">Heartrate Chart</h3>
+          <canvas id="heartrateChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3 class="chart-title">Time Taken Chart</h3>
+          <canvas id="timeTakenChart"></canvas>
+        </div>
+      </div>
 
       <h2>Workout History</h2>
       
     </form>
     
-    <ul id="tasklist">
+    <ul id="tasklist" class="card">
     </ul>
 
-    
-
-    
-    <!-- <script src="script.js"></script> -->
-    <!-- Swap the scripts to see the working solution -->
     <script src="script.js"></script>
   </body>
 </html>
